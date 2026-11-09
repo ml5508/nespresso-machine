@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vertuo Pop Coffee Machine</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <p class="eyebrow">Interactive model</p>
+      <h1>Vertuo Pop</h1>
+      <p class="intro">A simplified capsule coffee-machine simulation.</p>
+
+      <section class="machine" aria-label="Coffee machine simulator">
+        <div class="machine-top">
+          <p class="brand">NESPRESSO</p>
+          <span id="stateBadge" class="state-badge">OFF</span>
+        </div>
+
+        <div class="machine-body">
+          <div class="capsule-slot" aria-hidden="true">
+            <span id="capsuleDot" class="capsule-dot"></span>
+            <span id="capsuleLabel">No capsule</span>
+          </div>
+
+          <button id="mainButton" class="main-button" type="button" aria-label="Main coffee button">
+            <span class="button-light"></span>
+          </button>
+          <p class="button-label">Main button</p>
+
+          <div class="coffee-area" aria-hidden="true">
+            <div id="coffeeStream" class="coffee-stream"></div>
+            <div class="cup"><span></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="status-panel" aria-live="polite">
+        <p class="status-label">Machine status</p>
+        <h2 id="statusTitle">Machine is off</h2>
+        <p id="statusMessage">Press the main button to turn it on.</p>
+
+        <div class="progress-wrap">
+          <div class="progress-label"><span>Brewing progress</span><span id="progressText">0%</span></div>
+          <div class="progress-track" role="progressbar" aria-label="Brewing progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="setup" aria-labelledby="setupHeading">
+        <div>
+          <p class="status-label">Setup controls</p>
+          <h2 id="setupHeading">Prepare a coffee</h2>
+          <p>These represent physical actions, while the round button is the machine's one main button.</p>
+        </div>
+        <div class="setup-buttons">
+          <button id="capsuleButton" type="button">Insert capsule</button>
+          <button id="lidButton" type="button">Close lid</button>
+          <button id="waterButton" type="button">Add water</button>
+          <button id="ejectButton" type="button">Eject capsule</button>
+        </div>
+        <div class="machine-checks">
+          <p id="waterText">Water: 0%</p>
+          <p id="lidText">Lid: open</p>
+        </div>
+      </section>
+
+      <section class="notes" aria-labelledby="notesHeading">
+        <h2 id="notesHeading">Four-state model</h2>
+        <ol>
+          <li><strong>Off:</strong> the button light is off.</li>
+          <li><strong>Ready:</strong> the machine is on and waiting. It checks for water, a new capsule, and a closed lid when you press the main button.</li>
+          <li><strong>Brewing:</strong> the button pulses while a timer fills the progress bar.</li>
+          <li><strong>Finished:</strong> coffee is ready; eject the used capsule to return to Ready.</li>
+        </ol>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
